@@ -16,13 +16,13 @@ part of it, in the middle, with ellipsis:
 
 ```ruby
 require 'ellipsized'
-puts 'Hello, world!'.ellipsized(9)
+puts 'Hello, dear world!'.ellipsized(16)
 ```
 
 Prints:
 
 ```text
-Hel...ld!
+Hello, ...world!
 ```
 
 That's it.
