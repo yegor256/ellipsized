@@ -10,3 +10,4 @@ node_modules/
 rdoc/
 temp/
 vendor/
+.claude/
