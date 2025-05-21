@@ -11,13 +11,13 @@ Gem::Specification.new do |s|
   s.name = 'ellipsized'
   s.version = '0.0.0'
   s.license = 'MIT'
-  s.summary = 'A simple Ruby gem that adds a .ellipsized() method to Array'
+  s.summary = 'A simple Ruby gem that adds a .ellipsized() method to String'
   s.description =
-    'It makes a string fit into required length, replacing ' \
-    'part of it, in the middle, with ellipsis.'
+    'It makes a string fit into a required length by replacing ' \
+    'part of it in the middle with an ellipsis.'
   s.authors = ['Yegor Bugayenko']
   s.email = 'yegor256@gmail.com'
-  s.homepage = 'http://github.com/yegor256/ellipsized'
+  s.homepage = 'https://github.com/yegor256/ellipsized'
   s.files = `git ls-files`.split($RS)
   s.executables = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
   s.rdoc_options = ['--charset=UTF-8']

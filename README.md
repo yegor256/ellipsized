@@ -11,8 +11,8 @@
 [![Hits-of-Code](https://hitsofcode.com/github/yegor256/ellipsized)](https://hitsofcode.com/view/github/yegor256/ellipsized)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/yegor256/ellipsized/blob/master/LICENSE.txt)
 
-It makes a string fit into required length, replacing
-part of it, in the middle, with ellipsis:
+It makes a string fit into a required length by replacing
+part of it in the middle with an ellipsis:
 
 ```ruby
 require 'ellipsized'
@@ -46,7 +46,7 @@ Read
 Make sure your build is green before you contribute
 your pull request. You will need to have
 [Ruby](https://www.ruby-lang.org/en/) 3.0+ and
-[Bundler](https://bundler.io/) installed. Then:
+[Bundler](https://bundler.io/) installed. Then run:
 
 ```bash
 bundle update
