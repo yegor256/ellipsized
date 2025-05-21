@@ -12,7 +12,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/yegor256/ellipsized/blob/master/LICENSE.txt)
 
 It makes a string fit into a required length by replacing
-part of it in the middle with an ellipsis:
+part of it in the middle with an [ellipsis]:
 
 ```ruby
 require 'ellipsized'
@@ -54,3 +54,5 @@ bundle exec rake
 ```
 
 If it's clean and you don't see any error messages, submit your pull request.
+
+[ellipsis]: https://en.wikipedia.org/wiki/Ellipsis
