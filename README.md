@@ -25,6 +25,18 @@ Prints:
 Hello, ...world!
 ```
 
+You can also specify the ellipsis:
+
+```ruby
+puts 'How are you doing?'.ellipsized(14, ellipsis: '.. skip ..')
+```
+
+Prints:
+
+```text
+Ho.. skip ..g?
+```
+
 That's it.
 
 ## How to contribute

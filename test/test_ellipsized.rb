@@ -33,7 +33,7 @@ class TestEllipsized < Minitest::Test
   def test_with_replacement
     assert_equal(
       'This .. skip ..indow',
-      'This story is very long to fit into a small window'.ellipsized(20, rep: '.. skip ..')
+      'This story is very long to fit into a small window'.ellipsized(20, ellipsis: '.. skip ..')
     )
   end
 end
