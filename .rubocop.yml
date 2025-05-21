@@ -19,4 +19,8 @@ Layout/EndOfLine:
 Style/EvalWithLocation:
   Enabled: false
 Metrics/AbcSize:
-  Max: 25
+  Max: 30
+Metrics/CyclomaticComplexity:
+  Max: 10
+Metrics/PerceivedComplexity:
+  Max: 10

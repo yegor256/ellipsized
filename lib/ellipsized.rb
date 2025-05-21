@@ -36,6 +36,8 @@ class String
   #   "xyz".ellipsized(0) # => ""
   #   "xyz".ellipsized(2, gap: "...") # => "xy"
   def ellipsized(max = 64, gap: '...')
+    raise "Max length must be an Integer, while #{max.class.name} provided" unless max.is_a?(Integer)
+    raise "Max length (#{max}) is negative" if max.negative?
     return '' if empty?
     return self if length <= max
     return '' if max.zero?
