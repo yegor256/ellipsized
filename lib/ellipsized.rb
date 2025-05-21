@@ -11,12 +11,15 @@
 class String
   # @param [Integer] max The maximum length of the string, expected
   # @return [String] The text with ellipsis inside (if necessary)
-  def ellipsized(max = 64)
+  def ellipsized(max = 64, rep: '...')
     return '' if empty?
     return self if length <= max
+    return '' if max.zero?
+    return self[0..max - 1] if rep.length >= max
 
-    head = tail = (max - 3) / 2
-    head += 1 if head + tail + 3 < max
-    "#{self[0, head]}...#{self[length - tail..]}"
+    head = tail = (max - rep.length) / 2
+    head += 1 if head + tail + rep.length < max
+    head = max if head > max
+    "#{self[0, head]}#{rep}#{self[length - tail..]}"
   end
 end
