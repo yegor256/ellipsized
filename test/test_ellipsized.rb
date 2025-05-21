@@ -30,6 +30,16 @@ class TestEllipsized < Minitest::Test
     assert_equal('The...er', 'The Godfather'.ellipsized(8))
   end
 
+  def test_with_empty_gap
+    assert_equal('', 'Encapsulation'.ellipsized(0, gap: ''))
+    assert_equal('E', 'Encapsulation'.ellipsized(1, gap: ''))
+    assert_equal('En', 'Encapsulation'.ellipsized(2, gap: ''))
+    assert_equal('Enn', 'Encapsulation'.ellipsized(3, gap: ''))
+    assert_equal('Enon', 'Encapsulation'.ellipsized(4, gap: ''))
+    assert_equal('Encon', 'Encapsulation'.ellipsized(5, gap: ''))
+    assert_equal('Encion', 'Encapsulation'.ellipsized(6, gap: ''))
+  end
+
   def test_with_replacement
     assert_equal(
       'This .. skip ..indow',
