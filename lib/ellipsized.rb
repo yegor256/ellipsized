@@ -41,6 +41,9 @@ class String
     return '' if empty?
     return self if length <= max
     return '' if max.zero?
+    raise "The gap doesn't implement to_s()" unless gap.respond_to?(:to_s)
+
+    gap = gap.to_s
     return self[0..max - 1] if gap.length >= max
 
     head = tail = (max - gap.length) / 2
