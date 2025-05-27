@@ -13,7 +13,7 @@ class TestEllipsized < Minitest::Test
   def test_simple
     assert_equal('', ''.ellipsized)
     assert_equal('apple', 'apple'.ellipsized)
-    assert_equal('Мо...а', 'Москва спаленная пожаром французу отдана'.ellipsized(6))
+    assert_equal('Мо...?', 'Москва, спалённая пожаром, французу отдана?'.ellipsized(6))
     assert_equal('app...na', 'apple and banana'.ellipsized(8))
     assert_equal('пр...г!', 'привет, друг!'.ellipsized(7))
   end
