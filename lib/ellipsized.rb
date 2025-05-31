@@ -15,7 +15,7 @@ class String
   # or equal to the maximum length.
   #
   # @param [Integer] max The maximum length of the resulting string
-  # @param [String] gap The string to use as gap (default: '...')
+  # @param [String] gap The string to use as a gap (default: '...')
   # @return [String] The truncated string with gap in the middle if necessary
   #
   # @example Basic usage with default parameters
@@ -27,15 +27,15 @@ class String
   #   # => "This is...truncated"
   #
   # @example Custom gap
-  #   "Another very long string example".ellipsized(15, gap: "***")
+  #   "Another very long string example".ellipsized(15, "***")
   #   # => "Anoth***example"
   #
   # @example Edge cases
   #   "".ellipsized      # => ""
   #   "Short".ellipsized # => "Short"
   #   "xyz".ellipsized(0) # => ""
-  #   "xyz".ellipsized(2, gap: "...") # => "xy"
-  def ellipsized(max = 64, gap: '...')
+  #   "xyz".ellipsized(2, '...') # => "xy"
+  def ellipsized(max = 64, gap = '...')
     raise "Max length must be an Integer, while #{max.class.name} provided" unless max.is_a?(Integer)
     raise "Max length (#{max}) is negative" if max.negative?
     return '' if empty?

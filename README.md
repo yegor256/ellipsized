@@ -25,10 +25,10 @@ Prints:
 Hello, ...world!
 ```
 
-You can also specify what to fill the gap with:
+You can also specify what to use to fill the gap:
 
 ```ruby
-puts 'How are you doing?'.ellipsized(14, gap: '.. skip ..')
+puts 'How are you doing?'.ellipsized(14, '.. skip ..')
 ```
 
 Prints:
