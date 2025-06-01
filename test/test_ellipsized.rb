@@ -31,19 +31,19 @@ class TestEllipsized < Minitest::Test
   end
 
   def test_with_empty_gap
-    assert_equal('', 'Encapsulation'.ellipsized(0, gap: ''))
-    assert_equal('E', 'Encapsulation'.ellipsized(1, gap: ''))
-    assert_equal('En', 'Encapsulation'.ellipsized(2, gap: ''))
-    assert_equal('Enn', 'Encapsulation'.ellipsized(3, gap: ''))
-    assert_equal('Enon', 'Encapsulation'.ellipsized(4, gap: ''))
-    assert_equal('Encon', 'Encapsulation'.ellipsized(5, gap: ''))
-    assert_equal('Encion', 'Encapsulation'.ellipsized(6, gap: ''))
+    assert_equal('', 'Encapsulation'.ellipsized(0, ''))
+    assert_equal('E', 'Encapsulation'.ellipsized(1, ''))
+    assert_equal('En', 'Encapsulation'.ellipsized(2, ''))
+    assert_equal('Enn', 'Encapsulation'.ellipsized(3, ''))
+    assert_equal('Enon', 'Encapsulation'.ellipsized(4, ''))
+    assert_equal('Encon', 'Encapsulation'.ellipsized(5, ''))
+    assert_equal('Encion', 'Encapsulation'.ellipsized(6, ''))
   end
 
   def test_with_replacement
     assert_equal(
       'This .. skip ..indow',
-      'This story is very long to fit into a small window'.ellipsized(20, gap: '.. skip ..')
+      'This story is very long to fit into a small window'.ellipsized(20, '.. skip ..')
     )
   end
 end
