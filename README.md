@@ -37,6 +37,18 @@ Prints:
 Ho.. skip ..g?
 ```
 
+You can also specify alignment:
+
+```ruby
+puts 'How are you doing?'.ellipsized(14, '.. skip ..', :left)
+```
+
+Prints:
+
+```text
+.. skip ..ing?
+```
+
 That's it.
 
 ## How to contribute

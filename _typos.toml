@@ -1,0 +1,7 @@
+# SPDX-FileCopyrightText: Copyright (c) 2025 Yegor Bugayenko
+# SPDX-License-Identifier: MIT
+
+[default.extend-words]
+tring = "tring"
+ther = "ther"
+ather = "ather"
