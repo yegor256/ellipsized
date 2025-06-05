@@ -42,7 +42,10 @@ class String
   #   "xyz".ellipsized(0) # => ""
   #   "xyz".ellipsized(2, '...') # => "xy"
   def ellipsized(max = 64, gap = '...', align = :center)
-    validate_arguments(max, gap, align)
+    raise "Max length must be an Integer, while #{max.class.name} provided" unless max.is_a?(Integer)
+    raise "Max length (#{max}) is negative" if max.negative?
+    raise "The gap doesn't implement to_s()" unless gap.respond_to?(:to_s)
+    raise "Unsupported align: #{align}" unless %i[left center right].include?(align)
     return '' if empty?
     return self if length <= max
     return '' if max.zero?
@@ -61,14 +64,5 @@ class String
     when :right
       "#{self[0, max - gap.length]}#{gap}"
     end
-  end
-
-  private
-
-  def validate_arguments(max, gap, align)
-    raise "Max length must be an Integer, while #{max.class.name} provided" unless max.is_a?(Integer)
-    raise "Max length (#{max}) is negative" if max.negative?
-    raise "The gap doesn't implement to_s()" unless gap.respond_to?(:to_s)
-    raise "Unsupported align: #{align}" unless %i[left center right].include?(align)
   end
 end
