@@ -14,10 +14,26 @@ class String
   # maximum length. The original string is returned if it is already shorter than
   # or equal to the maximum length.
   #
-  # @param [Integer] max The maximum length of the resulting string
-  # @param [String] gap The string to use as a gap (default: '...')
-  # @param [Symbol] align The alignment can be :left, :center, or :right
-  #   (default: :center)
+  # @param [Array] args The mix of possible arguments passed to the method:
+  #  [Integer] max The maximum length of the resulting string (default: 64)
+  #  [String] gap The string to use as a gap (default: '...')
+  #  [Symbol] align The alignment can be :left, :center, or :right
+  #    (default: :center)
+  #  Since the three arguments have different types, we can distinguish them by
+  #  type. Based on that, the following permutations can be defined, 3! = 6:
+  #    s.ellipsized(10, '...', :right)
+  #    s.ellipsized(10, :right, '...')
+  #    s.ellipsized('...', 10, :right)
+  #    s.ellipsized('...', :right, 10)
+  #    s.ellipsized(:right, '...', 10)
+  #    s.ellipsized(:right, 10, '...')
+  #  Keep in mind, any argument may be omitted:
+  #    s.ellipsized(10, '...', :right)
+  #    s.ellipsized(10, :right)
+  #    s.ellipsized('...')
+  #    s.ellipsized(10)
+  #    s.ellipsized(:right)
+  #  All of the above are valid use cases.
   # @return [String] The truncated string with gap in the middle if necessary
   #
   # @example Basic usage with default parameters
@@ -41,16 +57,36 @@ class String
   #   "Short".ellipsized # => "Short"
   #   "xyz".ellipsized(0) # => ""
   #   "xyz".ellipsized(2, '...') # => "xy"
-  def ellipsized(max = 64, gap = '...', align = :center)
-    raise "Max length must be an Integer, while #{max.class.name} provided" unless max.is_a?(Integer)
-    raise "Max length (#{max}) is negative" if max.negative?
-    raise "The gap doesn't implement to_s()" unless gap.respond_to?(:to_s)
-    raise "Unsupported align: #{align}" unless %i[left center right].include?(align)
+  def ellipsized(*args)
+    raise "Unsupported number of arguments: #{args.length}" if args.length > 3
+
+    max = gap = align = nil
+    args.each do |arg|
+      raise "Unsupported argument type: #{arg}" unless [
+        Integer,
+        String,
+        Symbol
+      ].include?(arg.class)
+
+      case arg
+      when Integer
+        max = arg
+        raise "Max length (#{max}) is negative" if max.negative?
+        return '' if max.zero?
+      when String
+        gap = arg
+      when Symbol
+        align = arg
+        raise "Unsupported align: #{align}" unless
+          %i[left center right].include?(align) # rubocop:disable Performance/CollectionLiteralInLoop
+      end
+    end
+    max ||= 64
+    gap ||= '...'
+    align ||= :center
+
     return '' if empty?
     return self if length <= max
-    return '' if max.zero?
-
-    gap = gap.to_s
     return self[0..max - 1] if gap.length >= max
 
     case align

@@ -120,4 +120,18 @@ class TestEllipsized < Minitest::Test
       'This story is very long to fit into a small window'.ellipsized(20, '.. skip ..', :right)
     )
   end
+
+  def test_arguments_permutations
+    assert_equal('app...na', 'apple and banana'.ellipsized(8))
+    assert_equal('app...na', 'apple and banana'.ellipsized(8, '...'))
+    assert_equal('app...na', 'apple and banana'.ellipsized('...', 8))
+    assert_equal('app...na', 'apple and banana'.ellipsized(8, :center))
+    assert_equal('app...na', 'apple and banana'.ellipsized(:center, 8))
+    assert_equal('app...na', 'apple and banana'.ellipsized(8, '...', :center))
+    assert_equal('app...na', 'apple and banana'.ellipsized(8, :center, '...'))
+    assert_equal('app...na', 'apple and banana'.ellipsized('...', 8, :center))
+    assert_equal('app...na', 'apple and banana'.ellipsized('...', :center, 8))
+    assert_equal('app...na', 'apple and banana'.ellipsized(:center, 8, '...'))
+    assert_equal('app...na', 'apple and banana'.ellipsized(:center, '...', 8))
+  end
 end
