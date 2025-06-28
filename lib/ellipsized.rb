@@ -87,16 +87,16 @@ class String
 
     return '' if empty?
     return self if length <= max
-    return self[0..max - 1] if gap.length >= max
+    return self[0..(max - 1)] if gap.length >= max
 
     case align
     when :left
-      "#{gap}#{self[length - max + gap.length..]}"
+      "#{gap}#{self[(length - max + gap.length)..]}"
     when :center
       head = tail = (max - gap.length) / 2
       head += 1 if head + tail + gap.length < max
       head = max if head > max
-      "#{self[0, head]}#{gap}#{self[length - tail..]}"
+      "#{self[0, head]}#{gap}#{self[-tail, tail]}"
     when :right
       "#{self[0, max - gap.length]}#{gap}"
     end
