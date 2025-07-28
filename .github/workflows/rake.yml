@@ -1,7 +1,6 @@
 # SPDX-FileCopyrightText: Copyright (c) 2025 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 ---
-# yamllint disable rule:line-length
 name: rake
 'on':
   push:
@@ -13,9 +12,21 @@ name: rake
 jobs:
   rake:
     strategy:
+      fail-fast: false
       matrix:
-        os: [ubuntu-24.04, macos-15, windows-2022]
-        ruby: [3.3]
+        os:
+          - macos-13
+          - macos-14
+          - macos-15
+          - ubuntu-22.04
+          - ubuntu-24.04
+          - windows-2022
+          - windows-2025
+        ruby:
+          - 3.2
+          - 3.3
+          - 3.4
+    name: Rake on ${{ matrix.os }} / Ruby ${{ matrix.ruby }}
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -23,6 +34,4 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
-      - run: bundle config set --global path "$(pwd)/vendor/bundle"
-      - run: bundle install --no-color
       - run: bundle exec rake
