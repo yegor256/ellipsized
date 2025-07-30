@@ -1,7 +1,6 @@
 # SPDX-FileCopyrightText: Copyright (c) 2025 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 ---
-# yamllint disable rule:line-length
 name: codecov
 'on':
   push:
@@ -17,8 +16,6 @@ jobs:
         with:
           ruby-version: 3.3
           bundler-cache: true
-      - run: bundle config set --global path "$(pwd)/vendor/bundle"
-      - run: bundle install --no-color
       - run: bundle exec rake
       - uses: codecov/codecov-action@v5
         with:
