@@ -9,10 +9,10 @@
 # Copyright:: Copyright (c) 2025 Yegor Bugayenko
 # License:: MIT
 class String
-  # Truncates a string to specified maximum length, inserting a gap in the middle
-  # if necessary. The resulting string will never be longer than the specified
-  # maximum length. The original string is returned if it is already shorter than
-  # or equal to the maximum length.
+  # Truncates a string to specified maximum length, inserting a gap in the
+  # middle if necessary. The resulting string will never be longer than the
+  # specified maximum length. The original string is returned if it is already
+  # shorter than or equal to the maximum length.
   #
   # @param [Array] args The mix of possible arguments passed to the method:
   #  [Integer] max The maximum length of the resulting string (default: 64)
@@ -78,7 +78,7 @@ class String
       when Symbol
         align = arg
         raise "Unsupported align: #{align}" unless
-          %i[left center right].include?(align) # rubocop:disable Performance/CollectionLiteralInLoop
+          %i[left center right].include?(align)
       end
     end
     max ||= 64
