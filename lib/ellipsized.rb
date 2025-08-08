@@ -78,7 +78,7 @@ class String
       when Symbol
         align = arg
         raise "Unsupported align: #{align}" unless
-          %i[left center right].include?(align) # rubocop:disable Performance/CollectionLiteralInLoop
+          %i[left center right].include?(align)
       end
     end
     max ||= 64
