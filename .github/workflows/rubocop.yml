@@ -1,0 +1,28 @@
+# SPDX-FileCopyrightText: Copyright (c) 2025 Yegor Bugayenko
+# SPDX-License-Identifier: MIT
+---
+name: rubocop
+'on':
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  rubocop:
+    timeout-minutes: 15
+    runs-on: ubuntu-24.04
+    env:
+      BUNDLE_ONLY: rubocop
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2
+          bundler-cache: true
+      - uses: reviewdog/action-rubocop@v2
+        with:
+          reporter: github-pr-review  # Default is github-pr-check
+          skip_install: true
+          use_bundler: true
