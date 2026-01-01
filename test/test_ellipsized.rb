@@ -9,6 +9,7 @@ require 'json'
 require 'loog'
 require 'net/http'
 require 'random-port'
+require 'waitutil'
 require_relative '../lib/ellipsized'
 
 # Test.
@@ -143,19 +144,27 @@ class TestEllipsized < Minitest::Test
 
   def test_with_llm_inputs
     RandomPort::Pool::SINGLETON.acquire do |port|
-      donce(image: 'ollama/ollama', ports: { port => 11_434 }, root: true, log: Loog::VERBOSE) do
+      donce(image: 'ollama/ollama', ports: { port => 11_434 }, root: true, log: Loog::NULL) do
         home = Iri.new("http://localhost:#{port}")
-        sleep 1
-        assert_equal('Ollama is running', Net::HTTP.get(home.to_uri))
+        WaitUtil.wait_for_condition('Ollama to start') do
+          Net::HTTP.get(home.to_uri) == 'Ollama is running'
+        rescue StandardError
+          false
+        end
+        Net::HTTP.post(
+          home.cut('/api/pull').to_uri,
+          { model: 'smollm2:135m' }.to_json,
+          'Content-Type' => 'application/json'
+        )
         res = Net::HTTP.post(
           home.cut('/api/generate').to_uri,
-          { model: 'llama3.2',
+          { model: 'smollm2:135m',
             prompt: 'Generate a random short sentence in a random language.',
             stream: false }.to_json,
           'Content-Type' => 'application/json'
         )
         txt = JSON.parse(res.body)['response']
-        assert_equal(10, txt.ellipsized(10))
+        assert_equal(10, txt.ellipsized(10).length)
       end
     end
   end
