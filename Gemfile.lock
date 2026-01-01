@@ -8,13 +8,25 @@ GEM
   specs:
     ansi (1.5.0)
     ast (2.4.3)
+    backtrace (0.4.1)
     builder (3.3.0)
     date (3.5.1)
     docile (1.4.1)
+    donce (0.3.0)
+      backtrace (~> 0.3)
+      os (~> 1.1)
+      qbash (~> 0.3)
+    elapsed (0.2.1)
+      loog (~> 0.6)
+      tago (~> 0.1)
     erb (6.0.1)
+    iri (0.11.3)
     json (2.18.0)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
+    logger (1.7.0)
+    loog (0.6.1)
+      logger (~> 1.0)
     minitest (6.0.1)
       prism (~> 1.5)
     minitest-reporters (1.7.1)
@@ -22,6 +34,7 @@ GEM
       builder
       minitest (>= 5.0)
       ruby-progressbar
+    os (1.1.4)
     parallel (1.27.0)
     parser (3.3.10.0)
       ast (~> 2.4.1)
@@ -30,9 +43,16 @@ GEM
     psych (5.3.1)
       date
       stringio
+    qbash (0.4.8)
+      backtrace (> 0)
+      elapsed (> 0)
+      loog (> 0)
+      tago (> 0)
     racc (1.8.1)
     rainbow (3.1.1)
     rake (13.3.1)
+    random-port (0.7.6)
+      tago (~> 0.0)
     rdoc (7.0.3)
       erb
       psych (>= 4.0.0)
@@ -75,6 +95,7 @@ GEM
     simplecov-html (0.13.2)
     simplecov_json_formatter (0.1.4)
     stringio (3.2.0)
+    tago (0.6.0)
     tsort (0.2.0)
     unicode-display_width (3.2.0)
       unicode-emoji (~> 4.1)
@@ -92,10 +113,14 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  donce (~> 0.3)
   ellipsized!
+  iri (~> 0.11)
+  loog (~> 0.6)
   minitest (~> 6.0)
   minitest-reporters (~> 1.7)
   rake (~> 13.2)
+  random-port (~> 0.7)
   rdoc (~> 7.0)
   rubocop (~> 1.64)
   rubocop-minitest (~> 0.38)

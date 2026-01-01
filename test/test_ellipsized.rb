@@ -3,6 +3,12 @@
 # SPDX-FileCopyrightText: Copyright (c) 2025 Yegor Bugayenko
 # SPDX-License-Identifier: MIT
 
+require 'donce'
+require 'iri'
+require 'json'
+require 'loog'
+require 'net/http'
+require 'random-port'
 require_relative '../lib/ellipsized'
 
 # Test.
@@ -133,5 +139,24 @@ class TestEllipsized < Minitest::Test
     assert_equal('app...na', 'apple and banana'.ellipsized('...', :center, 8))
     assert_equal('app...na', 'apple and banana'.ellipsized(:center, 8, '...'))
     assert_equal('app...na', 'apple and banana'.ellipsized(:center, '...', 8))
+  end
+
+  def test_with_llm_inputs
+    RandomPort::Pool::SINGLETON.acquire do |port|
+      donce(image: 'ollama/ollama', ports: { port => 11_434 }, root: true, log: Loog::VERBOSE) do
+        home = Iri.new("http://localhost:#{port}")
+        sleep 1
+        assert_equal('Ollama is running', Net::HTTP.get(home.to_uri))
+        res = Net::HTTP.post(
+          home.cut('/api/generate').to_uri,
+          { model: 'llama3.2',
+            prompt: 'Generate a random short sentence in a random language.',
+            stream: false }.to_json,
+          'Content-Type' => 'application/json'
+        )
+        txt = JSON.parse(res.body)['response']
+        assert_equal(10, txt.ellipsized(10))
+      end
+    end
   end
 end
