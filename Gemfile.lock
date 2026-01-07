@@ -12,7 +12,7 @@ GEM
     builder (3.3.0)
     date (3.5.1)
     docile (1.4.1)
-    donce (0.3.0)
+    donce (0.4.0)
       backtrace (~> 0.3)
       os (~> 1.1)
       qbash (~> 0.3)
@@ -43,7 +43,7 @@ GEM
     psych (5.3.1)
       date
       stringio
-    qbash (0.4.8)
+    qbash (0.5.0)
       backtrace (> 0)
       elapsed (> 0)
       loog (> 0)
