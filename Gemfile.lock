@@ -20,7 +20,7 @@ GEM
       loog (~> 0.6)
       tago (~> 0.1)
     erb (6.0.1)
-    iri (0.11.3)
+    iri (0.11.8)
     json (2.18.0)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
