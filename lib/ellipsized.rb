@@ -9,7 +9,7 @@
 # Copyright:: Copyright (c) 2025-2026 Yegor Bugayenko
 # License:: MIT
 class String
-  # Truncates a string to specified maximum length, inserting a gap in the middle
+  # Truncates a string to a specified maximum length, inserting a gap in the middle
   # if necessary. The resulting string will never be longer than the specified
   # maximum length. The original string is returned if it is already shorter than
   # or equal to the maximum length.
