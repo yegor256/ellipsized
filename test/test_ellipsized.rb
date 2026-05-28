@@ -158,15 +158,20 @@ class TestEllipsized < Minitest::Test
           { model: 'smollm2:135m' }.to_json,
           'Content-Type' => 'application/json'
         )
-        res = Net::HTTP.post(
-          home.cut('/api/generate').to_uri,
-          { model: 'smollm2:135m',
-            prompt: 'Generate a random short sentence in a random language.',
-            stream: false }.to_json,
-          'Content-Type' => 'application/json'
+        assert_equal(
+          10,
+          JSON.parse(
+            Net::HTTP.post(
+              home.cut('/api/generate').to_uri,
+              {
+                model: 'smollm2:135m',
+                prompt: 'Generate a random short sentence in a random language.',
+                stream: false
+              }.to_json,
+              'Content-Type' => 'application/json'
+            ).body
+          )['response'].ellipsized(10).length
         )
-        txt = JSON.parse(res.body)['response']
-        assert_equal(10, txt.ellipsized(10).length)
       end
     end
   end

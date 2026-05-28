@@ -58,37 +58,29 @@ class String
   #   "xyz".ellipsized(0) # => ""
   #   "xyz".ellipsized(2, '...') # => "xy"
   def ellipsized(*args)
-    raise "Unsupported number of arguments: #{args.length}" if args.length > 3
-
+    raise(ArgumentError, "Unsupported number of arguments: #{args.length}") if args.length > 3
     max = gap = align = nil
     args.each do |arg|
-      raise "Unsupported argument type: #{arg}" unless [
-        Integer,
-        String,
-        Symbol
-      ].include?(arg.class)
-
+      raise(ArgumentError, "Unsupported argument type: #{arg}") unless [Integer, String, Symbol].include?(arg.class)
       case arg
       when Integer
         max = arg
-        raise "Max length (#{max}) is negative" if max.negative?
+        raise(ArgumentError, "Max length (#{max}) is negative") if max.negative?
         return '' if max.zero?
       when String
         gap = arg
       when Symbol
         align = arg
-        raise "Unsupported align: #{align}" unless
+        raise(ArgumentError, "Unsupported align: #{align}") unless
           %i[left center right].include?(align) # rubocop:disable Performance/CollectionLiteralInLoop
       end
     end
     max ||= 64
     gap ||= '...'
     align ||= :center
-
     return '' if empty?
     return self if length <= max
     return self[0..(max - 1)] if gap.length >= max
-
     case align
     when :left
       "#{gap}#{self[(length - max + gap.length)..]}"

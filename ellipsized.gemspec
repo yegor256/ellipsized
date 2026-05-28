@@ -6,15 +6,13 @@
 require 'English'
 
 Gem::Specification.new do |s|
-  s.required_rubygems_version = Gem::Requirement.new('>= 0') if s.respond_to? :required_rubygems_version=
+  s.required_rubygems_version = Gem::Requirement.new('>= 0') if s.respond_to?(:required_rubygems_version=)
   s.required_ruby_version = '>=3.2'
   s.name = 'ellipsized'
   s.version = '0.0.0'
   s.license = 'MIT'
   s.summary = 'A simple Ruby gem that adds a .ellipsized() method to String'
-  s.description =
-    'It makes a string fit into a required length by replacing ' \
-    'part of it in the middle with an ellipsis.'
+  s.description = 'It makes a string fit into a required length by replacing part of it in the middle with an ellipsis.'
   s.authors = ['Yegor Bugayenko']
   s.email = 'yegor256@gmail.com'
   s.homepage = 'https://github.com/yegor256/ellipsized'
