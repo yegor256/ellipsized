@@ -146,7 +146,7 @@ class TestEllipsized < Minitest::Test
   def test_with_llm_inputs
     skip if OS.windows? || OS.mac?
     RandomPort::Pool::SINGLETON.acquire do |port|
-      donce(image: 'ollama/ollama', ports: { port => 11_434 }, root: true, stdout: Loog::NULL) do
+      donce(image: 'ollama/ollama', ports: { port => 11_434 }, root: true, timeout: 600, stdout: Loog::NULL) do
         home = Iri.new("http://localhost:#{port}")
         WaitUtil.wait_for_condition('Ollama to start') do
           Net::HTTP.get(home.to_uri) == 'Ollama is running'
