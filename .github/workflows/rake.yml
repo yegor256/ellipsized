@@ -23,7 +23,6 @@ jobs:
           - windows-2022
           - windows-2025
         ruby:
-          - 3.2
           - 3.3
           - 3.4
     name: Rake on ${{ matrix.os }} / Ruby ${{ matrix.ruby }}
