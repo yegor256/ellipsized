@@ -107,7 +107,7 @@ GEM
       unicode-emoji (~> 4.3)
     unicode-emoji (4.3.0)
     waitutil (0.2.1)
-    yard (0.9.44)
+    yard (0.9.45)
 
 PLATFORMS
   aarch64-linux
