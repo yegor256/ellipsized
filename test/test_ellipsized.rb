@@ -143,6 +143,17 @@ class TestEllipsized < Minitest::Test
     assert_equal('app...na', 'apple and banana'.ellipsized(:center, '...', 8))
   end
 
+  def test_with_unsupported_argument_type
+    assert_equal(
+      'Unsupported argument type: 1.5',
+      assert_raises(ArgumentError) { 'apple and banana'.ellipsized(1.5) }.message
+    )
+  end
+
+  def test_with_string_subclass_gap
+    assert_equal('app...na', 'apple and banana'.ellipsized(8, Class.new(String).new('...')))
+  end
+
   def test_with_llm_inputs
     skip if OS.windows? || OS.mac?
     RandomPort::Pool::SINGLETON.acquire do |port|

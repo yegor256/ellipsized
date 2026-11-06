@@ -61,7 +61,6 @@ class String
     raise(ArgumentError, "Unsupported number of arguments: #{args.length}") if args.length > 3
     max = gap = align = nil
     args.each do |arg|
-      raise(ArgumentError, "Unsupported argument type: #{arg}") unless [Integer, String, Symbol].include?(arg.class)
       case arg
       when Integer
         max = arg
@@ -73,6 +72,8 @@ class String
         align = arg
         raise(ArgumentError, "Unsupported align: #{align}") unless
           %i[left center right].include?(align) # rubocop:disable Performance/CollectionLiteralInLoop
+      else
+        raise(ArgumentError, "Unsupported argument type: #{arg}")
       end
     end
     max ||= 64
