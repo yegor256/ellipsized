@@ -6,7 +6,8 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    ansi (1.6.0)
+    ansi (1.6.1)
+      logger
     ast (2.4.3)
     backtrace (0.4.1)
     builder (3.3.0)
@@ -15,12 +16,12 @@ GEM
       os (~> 1.1)
       qbash (~> 0.3)
     drb (2.2.3)
-    elapsed (0.3.1)
+    elapsed (0.3.2)
       loog (~> 0.6)
       tago (~> 0.1)
     erb (6.0.7)
     iri (0.11.8)
-    json (2.21.2)
+    json (3.2.0)
     language_server-protocol (3.17.0.6)
     lint_roller (1.1.0)
     logger (1.7.0)
@@ -40,7 +41,13 @@ GEM
     parser (3.3.14.0)
       ast (~> 2.4.1)
       racc
-    prism (1.9.0)
+    prism (2.1.0)
+    prism (2.1.0-aarch64-linux-gnu)
+    prism (2.1.0-arm-linux-gnu)
+    prism (2.1.0-arm64-darwin)
+    prism (2.1.0-x64-mingw-ucrt)
+    prism (2.1.0-x86_64-darwin)
+    prism (2.1.0-x86_64-linux-gnu)
     qbash (0.8.4)
       backtrace (> 0)
       elapsed (> 0)
